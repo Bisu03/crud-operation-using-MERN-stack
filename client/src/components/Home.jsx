@@ -9,12 +9,12 @@ const Home = () => {
   const { udata } = useContext(adddata)
   const { updata } = useContext(adddata)
   const { dltdata, setDLTdata } = useContext(adddata)
-  const { itemtdata, setitemdata } = useContext(adddata)
+  const { setitemdata } = useContext(adddata)
   const [getuserdata, setUserdata] = useState([])
   console.log(getuserdata)
 
   const getdata = async () => {
-    const res = await fetch('/getdata', {
+    const res = await fetch('https://crudapimern.herokuapp.com/getdata', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const Home = () => {
   }
   useEffect(() => {
     getdata()
-  }, [])
+  })
   const deleteuser = async (id) => {
     try {
       const config = {
@@ -41,7 +41,7 @@ const Home = () => {
           'content-type': 'application/json',
         },
       }
-      const res = await axios.delete(`/deleteuser/${id}`, config)
+      const res = await axios.delete(`https://crudapimern.herokuapp.com/deleteuser/${id}`, config)
       setDLTdata(res)
       setDLTdata(setitemdata)
       console.log('delete user')

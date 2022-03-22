@@ -3,7 +3,7 @@ import { NavLink, useParams, useHistory } from 'react-router-dom'
 import { adddata } from '../context/createContext'
 import axios from 'axios'
 const Edit = () => {
-  const {updata, setUPdata} = useContext(adddata)
+  const { setUPdata} = useContext(adddata)
   const histore = useHistory()
   const { id } = useParams('')
   console.log(id)
@@ -29,7 +29,7 @@ const Edit = () => {
   }
 
   const getdata = async () => {
-    const res = await fetch(`/getuser/${id}`, {
+    const res = await fetch(`https://crudapimern.herokuapp.com/getuser/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Edit = () => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  })
 
   const dataSubmit = async (e) => {
     e.preventDefault()
@@ -61,7 +61,7 @@ const Edit = () => {
         },
       }
       const res = await axios.patch(
-        `/updateuser/${id}`,
+        `https://crudapimern.herokuapp.com/updateuser/${id}`,
         { name, email, age, mobile, work, add, desc },
         config,
       )

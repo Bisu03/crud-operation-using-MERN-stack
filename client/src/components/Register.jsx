@@ -4,7 +4,7 @@ import axios from 'axios'
 import { adddata } from '../context/createContext'
 
 const Register = () => {
-  const { udata, setUdata } = useContext(adddata)
+  const {  setUdata } = useContext(adddata)
   const histore = useHistory()
   const [inpval, setINP] = useState({
     name: '',
@@ -35,7 +35,7 @@ const Register = () => {
         },
       }
       const res = await axios.post(
-        '/register',
+        'https://crudapimern.herokuapp.com/register',
         { name, email, age, mobile, work, add, desc },
         config,
       )

@@ -11,13 +11,13 @@ import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { adddata } from '../context/createContext'
 
 const Details = () => {
-  const { itemtdata, setitemdata } = useContext(adddata)
+  const { itemtdata } = useContext(adddata)
   const [getuserdata, setUserdata] = useState([])
   const { id } = useParams('')
   console.log(id)
 
   const getdata = async () => {
-    const res = await fetch(`/getuser/${id}`, {
+    const res = await fetch(`https://crudapimern.herokuapp.com/getuser/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const Details = () => {
 
   useEffect(() => {
     getdata()
-  }, [])
+  })
 
   return (
     <div>
